@@ -1,0 +1,75 @@
+
+Help full URLs:
+###############
+
+What is Chocolatey?
+=========================================================================================================
+Chocolatey is a command line application installer for Windows based on a developer-centric package manager called NuGet. Unlike manual installations, Chocolatey adds, updates, and uninstalls programs in the background requiring very little user interaction.
+Chocolatey NuGet is a Machine Package Manager, somewhat like apt-get, but built with Windows in mind.
+
+=========================================================================================================
+To Install Chocolatey: https://chocolatey.org/
+https://chocolatey.org/packages
+http://www.pcworld.com/article/2459950/how-to-use-chocolatey-a-delicious-windows-package-manager.html
+=========================================================================================================
+
+
+So what is ScriptCS?
+========================
+ScriptCS allows you to use C# as a scripting language. It harnesses the power of Roslyn and NuGet to enable you to write .NET applications with your favorite editor.
+scriptcs makes it easy to write and execute C# with a simple text editor.
+
+=========================================================================================================
+To Install scriptcs: http://scriptcs.net/
+http://scottksmith.com/blog/2013/05/08/getting-started-with-scriptcs/
+=========================================================================================================
+
+
+AppDemo Steps:
+=========================================================================================================
+1st:Create Project Dir: C:\Projects\Playground\OWINAPP
+
+2nd:Installing the packages:
+=========================================================================================================
+Create "packages.config" inside
+Import snippet "snippet-owin-packages"
+Open power sell go to App Dir
+"C:\Projects\Playground\OWINAPP"  ( CD C:\Projects\Playground\OWINAPP )
+Execute CMD "scriptcs -install"
+
+
+
+3rd: SC Script file and Startup web code:
+=========================================================================================================
+Create App.csx file 
+Import snippet "snippet-owin-startup"
+Open power shell goto 
+CD C:\Projects\Playground\OWINAPP 
+and Execute CMD
+scriptcs .\App.csx
+==========================================================================================================
+
+Open New PowerShell and execute:
+Invoke-WebRequest http://localhost:3000/
+===
+Invoke-WebRequest http://localhost:3000/Path1
+
+==========================================================================================================
+
+5th: change snippet "snippet-owin-startup" to "snippet-owin-startup-response"
+6th: change  "snippet-owin-startup-response" to "snippet-owin-startup-response-map"
+==========================================================================================================
+
+Create file "AppBuilderExtentions.csx" 
+call snippet  "snippet-AppBuilderExtentions" on it
+
+on App.csx import AppBuilderExtentions Write line "#load AppBuilderExtentions.csx" 
+
+in side configuration method at last write
+
+        AppBuilderExtentions.Get(
+            app,
+            "/path3",
+            (context, next) => context.Response.WriteAsync("Get method : path3")
+        );
+=========
